@@ -21,7 +21,7 @@ const prompt = require('prompt-sync');
 /* fetch('http://localhost:3000/todos', {
     method: "POST",
     headers: { "Content-Type" : "application/json" },
-    body: JSON.stringify({ title: "learn JS"})
+    body: JSON.stringify({ title: "learn JS" } )
 })
 .then(response => response.json())
 .then(data => {
@@ -44,7 +44,7 @@ const prompt = require('prompt-sync');
     console.error("Error: ", error);
 }) */
 
-fetch('http://localhost:3000/todos/3', {
+/*fetch('http://localhost:3000/todos/3', {
     method: "DELETE"
 })
 .then(response => {
@@ -59,4 +59,22 @@ fetch('http://localhost:3000/todos/3', {
 })
 .catch(error => {
     console.error("Error: ", error);
+}) */
+
+/* fetch('http://localhost:3000/todos/find-by-title/the')
+.then(response => response.json())
+.then(data => {
+    console.log(data);
 })
+.catch(error => {
+    console.error("Error: ", error);
+}) */
+
+/* fetch('http://localhost:3000/todos/find-by-status/not-done')
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+})
+.catch(error => {
+    console.error("Error: ", error);
+}) */
