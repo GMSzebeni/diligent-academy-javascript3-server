@@ -31,7 +31,7 @@ const prompt = require('prompt-sync');
     console.error("Error: ", error);
 }) */
 
-/* fetch('http://localhost:3000/todos/3', {
+/* fetch('http://localhost:3000/todos/edit-title/3', {
     method: "PUT",
     headers: { "Content-Type" : "application/json" },
     body: JSON.stringify({ title: "learn TS" })
@@ -78,3 +78,14 @@ const prompt = require('prompt-sync');
 .catch(error => {
     console.error("Error: ", error);
 }) */
+
+fetch('http://localhost:3000/todos/edit-status/3', {
+    method: "PUT"
+})
+.then(response => response.json())
+.then(data => {
+    console.log(data);
+})
+.catch(error => {
+    console.error("Error:", error);
+})

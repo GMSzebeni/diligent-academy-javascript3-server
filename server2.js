@@ -58,7 +58,7 @@ app.post('/todos', (req, res) => {
     }
 })
 
-app.put('/todos/:id', (req, res) => {
+app.put('/todos/edit-title/:id', (req, res) => {
     const { id } = req.params;
     const { title } = req.body;
 
@@ -95,7 +95,7 @@ app.get('/todos/find-by-title/:title', (req, res) => {
     let { title } = req.params;
 
     if (!title || title.trim() === "") {
-        return res.status(400).json("Please provide a valid title.")
+        return res.status(400).json({ message: "Please provide a valid title." })
     }
 
     title = title.trim();
@@ -112,7 +112,7 @@ app.get('/todos/find-by-title/:title', (req, res) => {
 app.get('/todos/find-by-status/:status', (req, res) => {
     let { status } = req.params;
 
-    if (!status || status.trim() === "") {
+    if (status !== "done" || status !== "not-done") {
         return res.status(400).json("Please provide a valid status: 'done' or 'not-done'.")
     }
 
@@ -123,6 +123,21 @@ app.get('/todos/find-by-status/:status', (req, res) => {
     }
 
     return res.status(200).json(filteredTodos);
+})
+
+app.put('/todos/edit-status/:id', (req, res) => {
+    const { id } = req.params;
+
+    const todoIndex = todos.findIndex(todo => todo.id === parseInt(id));
+
+    if (todoIndex !== -1) {
+        const newStatus = !todos[todoIndex].status;
+        todos[todoIndex] = { ...todos[todoIndex], status: newStatus }
+        writeTodos(todos);
+        res.status(200).json(`The status has been changed to: ${newStatus ? "done" : "not-done"}`)
+    } else {
+        res.status(404).json({ message: "Todo not found." })
+    }
 })
 
 app.listen(port, () => {
